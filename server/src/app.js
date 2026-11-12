@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 
 import errorMiddleware from "./middleware/errorMiddleware.js"
-
+import authRoutes from "./routes/authRoutes.js";
 const app = express();
 
 // Middlewares
@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan("dev"));
-
+app.use("/api/auth", authRoutes);
 // Health Check
 app.get("/api/health", (req, res) => {
   res.status(200).json({
